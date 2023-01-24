@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * get_size - Extracts and returns the size specifier
- * *present in the format string
+ * *present in the format string.
  * @format: Format string containing size specifiers and other characters
  * @i: Index in the format string to start parsing from
  * Return: Integer representing the size specifier that is active
