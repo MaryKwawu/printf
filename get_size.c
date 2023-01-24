@@ -1,29 +1,23 @@
 #include "main.h"
 /**
- * get_size - Extracts and returns the size specifier
- * *present in the format string.
- * @format: Format string containing size specifiers and other characters
- * @i: Index in the format string to start parsing from
- * Return: Integer representing the size specifier that is active
+ * get_size - Calculates the size to cast the argument
+ * @format: Formatted string in which to print the arguments
+ * @i: List of arguments to be printed.
+ *
+ * Return: Precision.
  */
 int get_size(const char *format, int *i)
 {
-int size = 0;
-if (format[*i] == 'h' && format[*i + 1] != 'h')
-size = 1;
-else if (format[*i] == 'h' && format[*i + 1] == 'h')
-{
-size = 2;
-(*i)++;
-}
-else if (format[*i] == 'l' && format[*i + 1] != 'l')
-size = 3;
-else if (format[*i] == 'l' && format[*i + 1] == 'l')
-{
-size = 4;
-(*i)++;
-}
-if (size)
-(*i)++;
-return (size);
+	int curr_i = *i + 1;
+	int size = 0;
+
+	if (format[curr_i] == 'l')
+		size = S_LONG;
+	else if (format[curr_i] == 'h')
+		size = S_SHORT;
+	if (size == 0)
+		*i = curr_i - 1;
+	else
+		*i = curr_i;
+	return (size);
 }
